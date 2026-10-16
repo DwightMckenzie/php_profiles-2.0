@@ -1,6 +1,5 @@
 $(document).ready(function () {
-   /* login select
-	=====================================================================*/
+	/* login selection */
 	$(function () {
 		$('#user-form-link').click(function (e) {
 			e.preventDefault();
