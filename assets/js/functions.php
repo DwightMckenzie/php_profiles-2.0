@@ -24,7 +24,8 @@ $(document).ready(function() {
         $('#adminId').val(id);
 
     });
-    // sends the request to update changes in database
+    
+	// sends the request to update changes in database
     $('#updateAdmin').click(function() {
         var id = $('#adminId').val();// right here
         var firstname = $('#mdlFnameAdmin').val();
@@ -61,13 +62,15 @@ $(document).ready(function() {
             }
         });
     });
-    // opens modal warning for deleting profile
+    
+	// opens modal warning for deleting profile
     $(document).on('click', 'button[data-role=deleteAdmin]', function() {
         $('#deleteAdminModal').modal('toggle');
         $('.delete-title').html('WARNING!');
         $('.delete-msg').html('<p>Are you sure you want to delete administrator? Once deleted this can not be recovered. If you wish to continue press "Delete". If you are unsure press "Close".</p>');
     });
-    // Deletes the profile
+    
+	// Deletes the profile
     $('#deleteAdmin').click(function(){
         var id = $('#adminId').val(),
             trId = '#' + id;
@@ -87,11 +90,13 @@ $(document).ready(function() {
             }
         });
     });
-    // opens the add profile modal
+    
+	// opens the add profile modal
     $(document).on('click', 'button[data-role=addAdmin]', function(){
         $('#addAdminModal').modal('toggle');
     });
-    // sends form values
+    
+	// sends form values
     $('#saveAdmin').click(function(){
         /*
         // generates profile id number
@@ -283,7 +288,7 @@ $(document).ready(function() {
     });
 
 /* login select
-=====================================================================*/
+=====================================================================*
     $(function() {
         $('#user-form-link').click(function(e) {
     		$("#user-form").delay(100).fadeIn(100);
@@ -307,6 +312,7 @@ $(document).ready(function() {
     		e.preventDefault();
     	});
     });
+*/
 
 /* reset form inputs
 =====================================================================*/

@@ -4,11 +4,11 @@
 	$pg_desc = 'Login or sign up here';
 	$pg_keywords = 'login, signin, create account';
 
-	require_once 'includes/config.php';
-	require_once 'includes/classes/Account.php';
-	require_once 'includes/classes/Constants.php';
-	require_once 'includes/classes/FormSanitizer.php';
-	require_once 'includes/classes/Session.php';
+	require_once 'classes/config.php';
+	require_once 'classes/Account.php';
+	require_once 'classes/Constants.php';
+	require_once 'classes/FormSanitizer.php';
+	require_once 'classes/Session.php';
 	// $error=''; // Variable To Store Error Message
 
 	$account = new Account($conn);
@@ -18,7 +18,7 @@
 		$ut = $_POST['submit'];
 		// $location = '';
 		
-    if(isset($ut)){
+		if(isset($ut)){
 			switch ($ut) {
 				case 'user':
 					// echo "user";
