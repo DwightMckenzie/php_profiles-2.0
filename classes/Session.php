@@ -110,7 +110,7 @@
 		echo '<script>
 			sessionStorage.clear();
 			localStorage.clear();
-			window.location.href = "../../index.php";
+			window.location.href = "index.php";
 		</script>';
 		exit;
 		

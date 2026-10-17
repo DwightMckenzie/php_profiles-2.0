@@ -32,5 +32,5 @@
 	</div>
 
 <?php require_once 'includes/footer.php' ?>
-<script src="assets/js/loginForm.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets/js/loginSelection.js"></script>
 

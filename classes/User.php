@@ -16,7 +16,7 @@
 		 * 
 		 */
 		public static function userVariables($conn, $un) {			
-			$sql = "SELECT * FROM user_prof
+			$sql = "SELECT * FROM users
             	WHERE username=:un";
 			$query = $conn->prepare($sql);
 			$query->bindValue(":un", $un);

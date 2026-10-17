@@ -7,18 +7,23 @@
     // $jumbotronText = 'Welcome there';
 
     // required
-    require_once "includes/config.php";
+    require_once "classes/Config.php";
     require_once "includes/header.php";
-    require_once "includes/classes/User.php";
-    require_once "includes/classes/Session.php";
+    require_once "classes/User.php";
+    require_once "classes/Session.php";
 
-    require_once "includes/header.php";
     
     // is the user logged in
 	// Session::userLoggedIn(Session::get('userLoggedIn'));
 
+	Session::startSession();
+
+
 	// get user array
     $user = User::userVariables($conn, Session::get('userLoggedIn'));
+	
+	// var_dump($user);
+	
 ?>
 
     <b id="logout"><a href="logout.php">Log Out</a>
@@ -39,11 +44,17 @@
 			</tr>
 		</thead>
     <?php
-        $sql = "SELECT * FROM admin_prof WHERE id";
-        $adminResult = $conn->query($sql);
+	
+		// $conn = new PDO($db_host, $db_name, $db_user, $db_pass);
+        $sql = "SELECT * FROM users WHERE id";
+        // $adminResult = $conn->query($sql);
+        $stmt = $conn->query($sql);
+		
+		// var_dump($stmt);
+		
     ?>
         <tbody>
-            <?php while ($row = $adminResult->fetch_assoc()) : ?>
+            <?php while ($row = $stmt->fetch()) : ?>
                 <?php
                     echo '<tr id="' . $row['ID'] . '">';
                         echo '<td data-target="adminfirstname">' . $row['firstname'] . '</td>';
@@ -180,11 +191,11 @@
             </tr>
         </thead>
     <?php
-        $sql = "SELECT * FROM user_prof WHERE id";
-        $profResult = $conn->query($sql);
+        $sql = "SELECT * FROM users WHERE id";
+        $stmt = $conn->query($sql);
     ?>
         <tbody>
-            <?php while ($row = $profResult->fetch_assoc()) : ?>
+            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
                 <?php
                     echo '<tr id="' . $row['ID'] . '">';
                         echo '<td data-target="proffirstname">' . $row['firstname'] . '</td>';
@@ -296,5 +307,6 @@
         </div>
     </div>
 
-<?php include 'functions.php' ?>
-<?php include 'footer.php' ?>
+<?php require_once 'includes/footer.php'; ?>
+<script type="text/javascript" src="assets/js/editAdmin.js"></script>
+<script type="text/javascript" src="assets/js/editUser.js"></script>

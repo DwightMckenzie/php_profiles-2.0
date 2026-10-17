@@ -1,11 +1,11 @@
 <?php
 	
-  /**
-   * clean the input field values
-   * 
-   * 
-   */
-  class FormSanitizer {
+	/**
+	* clean the input field values
+	* 
+	* 
+	*/
+	class FormSanitizer {
 
 		public static function sanitizeFormString($inputText) {
 			$inputText = strip_tags($inputText);

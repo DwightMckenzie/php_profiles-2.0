@@ -7,13 +7,13 @@ $(document).ready(function() {
         $('#updateAdminModal').modal('toggle');
         $('.updte-title').html('Upadate or Delete Administrator');
 
-        var id = $(this).parent('td').parent('tr').attr('id');
-        var tbFstname = $('#'+id).children('td[data-target=adminfirstname]').text();
-        var tbLstName = $('#'+id).children('td[data-target=adminlastname]').text();
-        var tbEmail = $('#'+id).children('td[data-target=adminemail]').text();
-        var tbUname = $('#'+id).children('td[data-target=adminusername]').text();
-        var tbPword = $('#'+id).children('td[data-target=adminpassword]').text();
-        var tbCode = $('#'+id).children('td[data-target=admincode]').text();
+        let id = $(this).parent('td').parent('tr').attr('id');
+        let tbFstname = $('#'+id).children('td[data-target=adminfirstname]').text();
+        let tbLstName = $('#'+id).children('td[data-target=adminlastname]').text();
+        let tbEmail = $('#'+id).children('td[data-target=adminemail]').text();
+        let tbUname = $('#'+id).children('td[data-target=adminusername]').text();
+        let tbPword = $('#'+id).children('td[data-target=adminpassword]').text();
+        let tbCode = $('#'+id).children('td[data-target=admincode]').text();
 
         $('#mdlFnameAdmin').val(tbFstname);
         $('#mdlLnameAdmin').val(tbLstName);
@@ -152,140 +152,145 @@ $(document).ready(function() {
 
 /* user
 =====================================================================*/
-    // brings up modal for updating fields
-    $(document).on('click', 'button[data-role=editProf]', function() {
-        $('#updateProfModal').modal('toggle');
-        $('.updte-title').html('Upadate or Delete profile');
+    // // brings up modal for updating fields
+    // $(document).on('click', 'button[data-role=editProf]', function() {
+        // $('#updateProfModal').modal('toggle');
+        // $('.updte-title').html('Upadate or Delete profile');
 
-        var id = $(this).parent('td').parent('tr').attr('id');
-        var tbFstname = $('#'+id).children('td[data-target=proffirstname]').text();
-        var tbLstName = $('#'+id).children('td[data-target=proflastname]').text();
-        var tbEmail = $('#'+id).children('td[data-target=profemail]').text();
-        var tbUname = $('#'+id).children('td[data-target=profusername]').text();
-        var tbPword = $('#'+id).children('td[data-target=profpassword]').text();
+        // var id = $(this).parent('td').parent('tr').attr('id');
+        // var tbFstname = $('#'+id).children('td[data-target=proffirstname]').text();
+        // var tbLstName = $('#'+id).children('td[data-target=proflastname]').text();
+        // var tbEmail = $('#'+id).children('td[data-target=profemail]').text();
+        // var tbUname = $('#'+id).children('td[data-target=profusername]').text();
+        // var tbPword = $('#'+id).children('td[data-target=profpassword]').text();
 
-        $('#mdlFnameProf').val(tbFstname);
-        $('#mdlLnameProf').val(tbLstName);
-        $('#mdlEmailProf').val(tbEmail);
-        $('#mdlUnameProf').val(tbUname);
-        $('#mdlPwordProf').val(tbPword);
-        $('#profId').val(id);
+        // $('#mdlFnameProf').val(tbFstname);
+        // $('#mdlLnameProf').val(tbLstName);
+        // $('#mdlEmailProf').val(tbEmail);
+        // $('#mdlUnameProf').val(tbUname);
+        // $('#mdlPwordProf').val(tbPword);
+        // $('#profId').val(id);
 
-    });
-    // sends the request to update changes in database
-    $('#updateProf').click(function() {
-        var id = $('#profId').val();// right here
-        var firstname = $('#mdlFnameProf').val();
-        var lastname = $('#mdlLnameProf').val();
-        var email = $('#mdlEmailProf').val();
-        var username = $('#mdlUnameProf').val();
-        var password = $('#mdlPwordProf').val();
+    // });
+    
+	// // sends the request to update changes in database
+    // $('#updateProf').click(function() {
+        // var id = $('#profId').val();// right here
+        // var firstname = $('#mdlFnameProf').val();
+        // var lastname = $('#mdlLnameProf').val();
+        // var email = $('#mdlEmailProf').val();
+        // var username = $('#mdlUnameProf').val();
+        // var password = $('#mdlPwordProf').val();
 
-        $.ajax({
-            url: 'connection.php',
-            type: 'POST',
-            // async: false,
-            data: {
-                button:$(this).data('update'),
-                id:id,
-                firstname:firstname,
-                lastname:lastname,
-                email:email,
-                username:username,
-                password:password
-            },
-            success: function(data) {
-                $('#'+id).children('td[data-target=proffirstname]').text(firstname);
-                $('#'+id).children('td[data-target=proflastname]').text(lastname);
-                $('#'+id).children('td[data-target=profemail]').text(email);
-                $('#'+id).children('td[data-target=profusername]').text(username);
-                $('#'+id).children('td[data-target=profpassword]').text(password);
-            },
-            error: function(){
-                alert("error in ajax form submission");
-            }
-        });
-    });
-    // opens modal warning for deleting profile
-    $(document).on('click', 'button[data-role=deleteProf]', function() {
-        $('#deleteProfModal').modal('toggle');
-        $('.delete-title').html('WARNING!');
-        $('.delete-msg').html('<p>Are you sure you want to delete this profile. Once deleted this profile can not be recovered. If you wish to continue press "Delete". If you are unsure press "Close".</p>');
-    });
-    // Deletes the profile
-    $('#deleteProf').click(function(){
-        var id = $('#profId').val(),
-            trId = '#' + id;
-        $.ajax({
-            url: 'connection.php',
-            type: 'POST',
-            // async: false,
-            data: {
-                button:$(this).data('delete'),
-                id:id
-            },
-            success: function(data) {
-                window.location.reload(true);
-            },
-            error: function(){
-                alert("error in ajax form submission");
-            }
-        });
-    });
-    // opens the add profile modal
-    $(document).on('click', 'button[data-role=addProf]', function(){
-        $('#addProfModal').modal('toggle');
-    });
-    // sends form values
-    $('#saveProf').click(function(){
-        /*
-        // generates profile id number
-        var tr = $('tbody').children('tr');// this needed to count tr
-        var trArr = [];// blnk array gets filled later
+        // $.ajax({
+            // url: 'connection.php',
+            // type: 'POST',
+            // // async: false,
+            // data: {
+                // button:$(this).data('update'),
+                // id:id,
+                // firstname:firstname,
+                // lastname:lastname,
+                // email:email,
+                // username:username,
+                // password:password
+            // },
+            // success: function(data) {
+                // $('#'+id).children('td[data-target=proffirstname]').text(firstname);
+                // $('#'+id).children('td[data-target=proflastname]').text(lastname);
+                // $('#'+id).children('td[data-target=profemail]').text(email);
+                // $('#'+id).children('td[data-target=profusername]').text(username);
+                // $('#'+id).children('td[data-target=profpassword]').text(password);
+            // },
+            // error: function(){
+                // alert("error in ajax form submission");
+            // }
+        // });
+    // });
+    
+	// // opens modal warning for deleting profile
+    // $(document).on('click', 'button[data-role=deleteProf]', function() {
+        // $('#deleteProfModal').modal('toggle');
+        // $('.delete-title').html('WARNING!');
+        // $('.delete-msg').html('<p>Are you sure you want to delete this profile. Once deleted this profile can not be recovered. If you wish to continue press "Delete". If you are unsure press "Close".</p>');
+    // });
+    
+	// // Deletes the profile
+    // $('#deleteProf').click(function(){
+        // var id = $('#profId').val(),
+            // trId = '#' + id;
+        // $.ajax({
+            // url: 'connection.php',
+            // type: 'POST',
+            // // async: false,
+            // data: {
+                // button:$(this).data('delete'),
+                // id:id
+            // },
+            // success: function(data) {
+                // window.location.reload(true);
+            // },
+            // error: function(){
+                // alert("error in ajax form submission");
+            // }
+        // });
+    // });
+    
+	// // opens the add profile modal
+    // $(document).on('click', 'button[data-role=addProf]', function(){
+        // $('#addProfModal').modal('toggle');
+    // });
+    
+	// // sends form values
+    // $('#saveProf').click(function(){
+        // /*
+        // // generates profile id number
+        // var tr = $('tbody').children('tr');// this needed to count tr
+        // var trArr = [];// blnk array gets filled later
 
-        // loop each row, gts tr id and places it in array
-        $(tr).each(function(){
-            var trId = $(this).attr('id');
-            trArr.push(trId);
-        });
+        // // loop each row, gts tr id and places it in array
+        // $(tr).each(function(){
+            // var trId = $(this).attr('id');
+            // trArr.push(trId);
+        // });
 
-        var lgId = Math.max.apply(Math, trArr);// finds largest id with in table
-        var lgIdNew = lgId + 1;
+        // var lgId = Math.max.apply(Math, trArr);// finds largest id with in table
+        // var lgIdNew = lgId + 1;
 
-        vars of stored fields
-        var id = parseInt(lgIdNew);
-        */
-        var firstname = $('#addProfFname').val();
-        var lastname = $('#addProfLname').val();
-        var email = $('#addProfEmail').val();
-        var username = $('#addProfUname').val();
-        var password = $('#addProfPword').val();
+        // vars of stored fields
+        // var id = parseInt(lgIdNew);
+        // */
+        // var firstname = $('#addProfFname').val();
+        // var lastname = $('#addProfLname').val();
+        // var email = $('#addProfEmail').val();
+        // var username = $('#addProfUname').val();
+        // var password = $('#addProfPword').val();
 
-        $.ajax({
-            url: 'connection.php',
-            type: 'POST',
-            // async: false,
-            data: {
-                button:$(this).data('save'),
-                firstname:firstname,
-                lastname:lastname,
-                email:email,
-                username:username,
-                password:password
-            },
-            success: function(data) {
-                $('#addProfFname').val(firstname);
-                $('#addProfLname').val(lastname);
-                $('#addProfEmail').val(email);
-                $('#addProfUname').val(username);
-                $('#addProfPword').val(password);
-                window.location.reload(true);
-            },
-            error: function(){
-                alert("error in ajax form submission");
-            }
-        });
-    });
+        // $.ajax({
+            // url: 'connection.php',
+            // type: 'POST',
+            // // async: false,
+            // data: {
+                // button:$(this).data('save'),
+                // firstname:firstname,
+                // lastname:lastname,
+                // email:email,
+                // username:username,
+                // password:password
+            // },
+            // success: function(data) {
+                // $('#addProfFname').val(firstname);
+                // $('#addProfLname').val(lastname);
+                // $('#addProfEmail').val(email);
+                // $('#addProfUname').val(username);
+                // $('#addProfPword').val(password);
+                // window.location.reload(true);
+            // },
+            // error: function(){
+                // alert("error in ajax form submission");
+            // }
+        // });
+    // });
 
 /* login select
 =====================================================================*
@@ -316,9 +321,9 @@ $(document).ready(function() {
 
 /* reset form inputs
 =====================================================================*/
-$('#registersubmit').click(function(){
-    $('#register-form input').reset();
-});
+	$('#registersubmit').click(function(){
+		$('#register-form input').reset();
+	});
 
 
 

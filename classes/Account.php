@@ -19,7 +19,7 @@
                 // $pw = hash("sha512", $pw);
                 $pw = hash("md5", $pw);
 
-                $sql = "SELECT * FROM user_prof
+                $sql = "SELECT * FROM users
                         WHERE username=:un
                         AND password=:pw";
                 $query = $this->conn->prepare($sql);
@@ -49,14 +49,14 @@
                 // $pw = hash("sha512", $pw);
                 $pw = hash("md5", $pw);
 
-                $sql = "SELECT * FROM admin_prof
+                $sql = "SELECT * FROM users
                         WHERE username=:un
                         AND password=:pw
-                        AND pin=:pin";
+                        AND admincode=:admincode";
                 $query = $this->conn->prepare($sql);
                 $query->bindValue(':un', $un);
                 $query->bindValue(':pw', $pw);
-                $query->bindValue(':pin', $pin);
+                $query->bindValue(':admincode', $pin);
                 $query->execute();
 
                 // see if the username exists

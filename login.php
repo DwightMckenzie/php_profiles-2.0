@@ -4,7 +4,7 @@
 	$pg_desc = 'Login or sign up here';
 	$pg_keywords = 'login, signin, create account';
 
-	require_once 'classes/config.php';
+	require_once 'classes/Config.php';
 	require_once 'classes/Account.php';
 	require_once 'classes/Constants.php';
 	require_once 'classes/FormSanitizer.php';
@@ -18,6 +18,8 @@
 		$ut = $_POST['submit'];
 		// $location = '';
 		
+		
+		// what type of user
 		if(isset($ut)){
 			switch ($ut) {
 				case 'user':
@@ -75,6 +77,7 @@
 				Session::set('userLoggedIn', $un);
 				
 				header("Location: " . $location);
+				
 			}
 		
 		}
@@ -201,4 +204,4 @@
 	</div>
 
 <?php require_once "includes/footer.php"; ?>
-<script type="text/javascript" src="assets/js/loginForm.js"></script>
+<script type="text/javascript" src="assets/js/loginSelection.js"></script>

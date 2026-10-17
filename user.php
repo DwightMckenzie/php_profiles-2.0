@@ -7,20 +7,25 @@
     // $jumbotronText = 'Welcome there';
 
     // required
-    require_once "includes/config.php";
+    require_once "classes/Config.php";
     require_once "includes/header.php";
-    require_once "includes/classes/User.php";
-    require_once "includes/classes/Session.php";
-
-    require_once "includes/header.php";
-    
+    require_once "classes/User.php";
+    require_once "classes/Session.php";
+	
     // is the user logged in
 	// Session::userLoggedIn(Session::get('userLoggedIn'));
-
+	
+	
+	Session::startSession();
+	
 	// get user array
     $user = User::userVariables($conn, Session::get('userLoggedIn'));
+	
+	
+    // $user = User::userVariables($conn, 'johnnydoe');
+    // $user = User::userVariables($conn, $userName);
 
-    var_dump($user);
+	// var_dump($user);
 ?>
 
 <div class="row">
@@ -96,4 +101,4 @@
 </div>
 
 <?php require_once 'includes/footer.php'; ?>
-<!-- <php require_once 'functions.php'; ?> -->
+<script type="text/javascript" src="assets/js/editUser.js"></script>
